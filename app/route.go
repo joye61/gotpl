@@ -9,6 +9,7 @@ func RouterSet(r *gin.Engine) {
 	// 每个控制器文件对应一个分组
 	test := r.Group("/test", controller.TestIndex)
 	{
+		test.Use()
 		test.GET("/v1", controller.TestShow)
 	}
 }
