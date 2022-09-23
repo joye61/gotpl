@@ -3,6 +3,7 @@ package core
 import (
 	"flag"
 	"reflect"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -14,7 +15,7 @@ type Application struct {
 	Env string
 }
 
-/// 获取配置信息，值需要单独断言
+// / 获取配置信息，值需要单独断言
 func (ctx *Application) Config(key string) any {
 
 	cc := reflect.ValueOf(app.CommonConfig)
@@ -30,12 +31,13 @@ func (ctx *Application) Config(key string) any {
 
 var App *Application
 
-/// 初始化配置
-/// 设置日志等信息
-/// 初始化数据库连接
-/// 实例化Gin
-/// 初始化注册的路由信息
+// / 初始化配置
+// / 设置日志等信息
+// / 初始化数据库连接
+// / 实例化Gin
+// / 初始化注册的路由信息
 func Run() {
+
 	// 默认是开发环境
 	App = &Application{}
 
@@ -45,5 +47,6 @@ func Run() {
 
 	r := gin.Default()
 	app.RouterSet(r)
-	r.Run(":3000")
+	port := App.Config("Port").(int16)
+	r.Run(":" + strconv.FormatInt(int64(port), 10))
 }
