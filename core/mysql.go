@@ -78,6 +78,9 @@ type GetsInfo struct {
 }
 
 func (t *MySQLTable) Gets(info *GetsInfo) {
+	i := &GetsInfo{
+		Field: "*",
+	}
 
 }
 func (t *MySQLTable) Dels() {}
