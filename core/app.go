@@ -45,8 +45,8 @@ func Run() {
 	flag.StringVar(&App.Env, "env", "dev", "Current environment")
 	flag.Parse()
 
-	r := gin.Default()
-	app.RouterSet(r)
+	router := gin.Default()
+	app.RouterSet(router)
 	port := App.Config("Port").(int16)
-	r.Run(":" + strconv.FormatInt(int64(port), 10))
+	router.Run(":" + strconv.FormatInt(int64(port), 10))
 }

@@ -1,9 +1,13 @@
 package main
 
-import (
-	"github.com/joye61/gotpl/core"
-)
-
 func main() {
-	core.Run()
+	Test()
+	// core.Run()
+}
+
+func Test() {
+	var a = make(map[string]string)
+	_, ok := a["hello"]
+	a["a"] = "b"
+	println(ok, a["a"])
 }
